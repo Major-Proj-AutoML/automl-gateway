@@ -198,6 +198,22 @@ def analysis_wilcoxon(a: str, b: str) -> Response:
     return proxy_get(settings.analysis_service_url, "/analysis/wilcoxon", params={"a": a, "b": b})
 
 
+@app.get("/analysis/traces")
+def analysis_traces(
+    dataset_id: Optional[int] = Query(None),
+    limit: int = Query(100, ge=1, le=1000),
+) -> Response:
+    params: dict[str, Any] = {"limit": limit}
+    if dataset_id is not None:
+        params["dataset_id"] = dataset_id
+    return proxy_get(settings.analysis_service_url, "/analysis/traces", params=params)
+
+
+@app.get("/analysis/rule-usage")
+def analysis_rule_usage() -> Response:
+    return proxy_get(settings.analysis_service_url, "/analysis/rule-usage")
+
+
 # ------------------------------- WORKFLOWS -------------------------------
 
 @app.post("/workflows/upload-and-extract")
