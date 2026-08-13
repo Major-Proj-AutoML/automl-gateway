@@ -23,6 +23,8 @@ Highlights:
 | List datasets | `GET /datasets` |
 | Extract meta-features | `POST /meta-features/{id}` |
 | Enqueue single run | `POST /runs` |
+| Download generated script | `GET /runs/{id}/script` |
+| Download trained model | `GET /runs/{id}/model` |
 | Enqueue sweep | `POST /sweeps` |
 | RQ1–RQ5 analyses | `GET /analysis/*` |
 | Full pipeline in one call | `POST /workflows/full-run` |
