@@ -151,6 +151,16 @@ def get_run(run_id: int) -> Response:
     return proxy_get(settings.generation_service_url, f"/runs/{run_id}")
 
 
+@app.get("/runs/{run_id}/script")
+def download_script(run_id: int) -> Response:
+    return proxy_get(settings.generation_service_url, f"/runs/{run_id}/script")
+
+
+@app.get("/runs/{run_id}/model")
+def download_model(run_id: int) -> Response:
+    return proxy_get(settings.generation_service_url, f"/runs/{run_id}/model")
+
+
 @app.post("/sweeps")
 async def create_sweep(request: Request) -> Response:
     return proxy_json("POST", settings.generation_service_url, "/sweeps", await request.json())
